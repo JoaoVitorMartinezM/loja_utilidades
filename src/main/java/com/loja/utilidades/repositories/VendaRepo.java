@@ -13,5 +13,5 @@ public interface VendaRepo extends JpaRepository<Venda, Integer> {
 
     List<Venda> findByDataBetween(Date dataInicio, Date datafinal);
 
-    Venda findByStatus(String status);
+    Venda findByStatusIgnoreCase(String status);
 }

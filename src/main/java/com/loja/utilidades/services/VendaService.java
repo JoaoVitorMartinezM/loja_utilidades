@@ -126,6 +126,6 @@ public class VendaService {
         if (status == null || status == ""){
             return null;
         }
-        return repositorio.findByStatus(status);
+        return repositorio.findByStatusIgnoreCase(status);
     }
 }

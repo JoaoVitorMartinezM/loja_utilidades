@@ -1,5 +1,6 @@
 package com.loja.utilidades.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +36,14 @@ public class Venda {
     private Double valor;
 
     @ManyToOne
+    @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
     private List<VendaItem> produtos = new ArrayList<>();
 
 
