@@ -31,4 +31,9 @@ public class Produto {
     @Column(length = 100)
     private String descricao;
 
+    @Column(nullable = false, name = "valor_unitario")
+    private Double valorUnitario;
+
+
+
 }

@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,7 +26,7 @@ public class Venda {
     private LocalDateTime data = LocalDateTime.now();
 
     @Column(nullable = false, length = 1)
-    private String status;
+    private String status = "P";
 
     @Column(nullable = false)
     private Double quantidade;
@@ -38,7 +39,7 @@ public class Venda {
     private Cliente cliente;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VendaItem> produtos;
+    private List<VendaItem> produtos = new ArrayList<>();
 
 
 }
