@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_vendas")
+@Table(name = "vendas")
 public class Venda {
 
     @Id
@@ -36,14 +36,10 @@ public class Venda {
     private Double valor;
 
     @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    @ToString.Exclude
     private List<VendaItem> produtos = new ArrayList<>();
 
 
