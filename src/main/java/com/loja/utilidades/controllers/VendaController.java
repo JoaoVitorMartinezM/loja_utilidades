@@ -4,9 +4,11 @@ package com.loja.utilidades.controllers;
 import com.loja.utilidades.models.Venda;
 import com.loja.utilidades.services.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -24,6 +26,19 @@ public class VendaController {
     @GetMapping(value = "/id{id}", name = "GetById")
     public Venda getById(@RequestParam Integer id){
         return service.getById(id);
+    }
+
+    @GetMapping(value = "/search{dataInicio}{dataFinal}", name = "GetByDate")
+    public List<Venda> getByDate(
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dataInicio,
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date datafinal
+    ){
+        return service.getByDate(dataInicio, datafinal);
+    }
+
+    @GetMapping(value = "/search{status}", name = "GetByStatus")
+    public Venda getByStatus(@RequestParam String status){
+        return service.getByStatus(status);
     }
 
     @DeleteMapping(value = "/delete/id{id}", name = "Delete")

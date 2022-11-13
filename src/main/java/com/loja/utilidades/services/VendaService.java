@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,8 @@ public class VendaService {
     }
 
     public Venda getById(Integer id){
-        return repositorio.findById(id).get();
+        Venda venda  = repositorio.findById(id).get();
+        return venda;
 
     }
 
@@ -109,5 +111,21 @@ public class VendaService {
             return true;
         }
         return false;
+    }
+
+    public List<Venda> getByDate(Date dataInicio, Date datafinal) {
+
+        if (datafinal == null || dataInicio == null) {
+
+            return new ArrayList<>();
+        }
+        return repositorio.findByDataBetween(dataInicio, datafinal);
+    }
+
+    public Venda getByStatus(String status) {
+        if (status == null || status == ""){
+            return null;
+        }
+        return repositorio.findByStatus(status);
     }
 }

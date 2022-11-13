@@ -38,7 +38,7 @@ public class Venda {
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VendaItem> produtos = new ArrayList<>();
 
 
