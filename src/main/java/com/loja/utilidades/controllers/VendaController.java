@@ -44,6 +44,12 @@ public class VendaController {
         return service.save(venda);
     }
 
+    @PutMapping(value = "/cancel/id{id}", name = "Edit")
+    public Boolean cancel(@RequestParam Integer id){
+        return service.cancel(id);
+
+    }
+
 
 
 }

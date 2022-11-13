@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VendaService {
@@ -100,8 +101,13 @@ public class VendaService {
     }
 
 
-
-
-
-
+    public Boolean cancel(Integer id) {
+        if (repositorio.existsById(id)){
+            Venda vendaCancelada = repositorio.findById(id).get();
+            vendaCancelada.setStatus("C");
+            repositorio.save(vendaCancelada);
+            return true;
+        }
+        return false;
+    }
 }
