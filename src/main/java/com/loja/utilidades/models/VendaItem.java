@@ -36,8 +36,6 @@ public class VendaItem {
     private Venda venda;
 
     @ManyToOne
-    @JsonIgnore
-    @ToString.Exclude
     @JoinColumn(nullable = false)
     private Produto produto;
 

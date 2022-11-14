@@ -39,15 +39,19 @@ public class VendaService {
 
     public Venda save(Venda venda){
 
+
+
         Double vendaTotal = 0.0;
         Double vendaQuantidade = 0.0;
+        Integer prod = venda.getProdutos().get(0).getId();
+
+
         for (VendaItem item : venda.getProdutos()){
-            item.setVenda(venda);
             Produto produto = produtoRepo.findById(item.getProduto().getId()).get();
             item.setProduto(produto);
             item.setValorUnitario(produto.getValorUnitario());
             item.setValorTotal(item.getValorUnitario() * item.getQuantidade());
-
+            item.setVenda(venda);
             vendaTotal = item.getValorTotal();
             vendaQuantidade = item.getQuantidade();
         }
